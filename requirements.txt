@@ -1,0 +1,6 @@
+torch==2.5.1
+opencv-python==4.10.0.84
+numpy==1.26.2
+torchvision==0.20.1
+pyttsx3==2.98
+Pillow==10.1.0

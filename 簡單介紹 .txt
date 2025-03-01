@@ -1,0 +1,6 @@
+train資料夾是模型訓練資料
+freeway_train.CSV 是標籤
+	二元分類而已
+流程圖.py是流程圖(廢話XD
+https://drive.google.com/drive/folders/1nlD6f22cShbf2hM39lEuHgVe_pE3miPN?usp=sharing
+code連結 不過 要等過兩天我去解救我桌機 才會有完整的 
