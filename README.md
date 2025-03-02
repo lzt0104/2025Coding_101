@@ -198,7 +198,7 @@ ax2.legend()
 
 ## 技術亮點
 
-![訓練與驗證損失和F1分數](training_history.png)
+![訓練與驗證損失和F1分數](training_history_matplotlib.png)
 
 ---
 
