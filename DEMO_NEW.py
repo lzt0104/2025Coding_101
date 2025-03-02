@@ -63,7 +63,7 @@ num_layers = 1
 output_size = 1
 
 model = CNNLSTMModel(hidden_size, num_layers, output_size).to(device)
-model.load_state_dict(torch.load('modle/modle.pth', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('modle/complete_deep_cnn_lstm.pth', map_location=torch.device('cpu')))
 model.eval()
 
 transform = transforms.Compose([
