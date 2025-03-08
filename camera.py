@@ -8,8 +8,10 @@ import os
 import pyttsx3
 import time
 import threading
-import picamera
-import picamera.array
+# 替換 picamera 為 picamera2
+from picamera2 import Picamera2
+from picamera2.encoders import H264Encoder
+from picamera2.outputs import FfmpegOutput
 
 # 設置設備
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -139,16 +141,17 @@ class SafetyDemo:
         return probability
     
     def process_camera(self):
-        with picamera.PiCamera() as camera:
-            camera.resolution = (640, 480)
-            camera.framerate = 10
-            rawCapture = picamera.array.PiRGBArray(camera, size=(640, 480))
-            time.sleep(1)
+        # 初始化 picamera2
+        picam2 = Picamera2()
+        picam2.configure(picam2.create_preview_configuration(main={"size": (640, 480)}))
+        picam2.start()
+        time.sleep(2)  # 給相機一些啟動時間
             
-            tensor_buffer = []
-            for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-                image = frame.array
-                rawCapture.truncate(0)
+        tensor_buffer = []
+        try:
+            while True:
+                # 獲取影像
+                image = picam2.capture_array()
                 
                 tensor = self.process_image(image)
                 tensor_buffer.append(tensor)
@@ -171,8 +174,12 @@ class SafetyDemo:
                     cv2.imshow("Traffic Safety Alert", image)
                     if cv2.waitKey(1) & 0xFF == ord('q'):
                         break
-            camera.close()
+        except KeyboardInterrupt:
+            print("程式被使用者中斷")
+        finally:
+            picam2.stop()
             cv2.destroyAllWindows()
+            print("相機已關閉")
 
 # 主程式
 def main():
