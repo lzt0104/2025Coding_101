@@ -776,8 +776,6 @@ python chart.py
 - [會計系大三] - 數據處理與特徵工程、使用者介面與展示
 
 
-。
-
 ---
 
 <p align="center">
