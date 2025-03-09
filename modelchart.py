@@ -67,32 +67,32 @@ plt.arrow(17.2, 4.0, 1.6, 0, head_width=0.2, head_length=0.3,
 
 # 添加標籤 - 只保留重點，確保在框內
 # ResNet標籤
-plt.text(3.0, 5.8, "ResNet特徵提取", ha='center', fontsize=14, fontweight='bold', color=text_color)
-plt.text(3.0, 4.8, "• ResNet-18", ha='center', fontsize=12, color=text_color)
-plt.text(3.0, 4.0, "• Identity()", ha='center', fontsize=12, color=text_color)
-plt.text(3.0, 3.2, "• 空間特徵提取", ha='center', fontsize=12, color=text_color)
-plt.text(3.0, 2.2, "輸出維度: 512", ha='center', fontsize=12, color=text_color)
+plt.text(3.0, 5.8, "ResNet特徵提取", ha='center', fontsize=28, fontweight='bold', color=text_color)
+plt.text(3.0, 4.8, "• ResNet-18", ha='center', fontsize=22, color=text_color)
+plt.text(3.0, 4.0, "• Identity()", ha='center', fontsize=22, color=text_color)
+plt.text(3.0, 3.2, "• 空間特徵提取", ha='center', fontsize=22, color=text_color)
+plt.text(3.0, 2.2, "輸出維度: 512", ha='center', fontsize=22, color=text_color)
 
 # 注意力機制標籤
-plt.text(9.0, 5.8, "注意力機制", ha='center', fontsize=14, fontweight='bold', color=text_color)
-plt.text(9.0, 4.8, "• Linear + Tanh", ha='center', fontsize=12, color=text_color)
-plt.text(9.0, 4.0, "• Linear + Softmax", ha='center', fontsize=12, color=text_color)
-plt.text(9.0, 3.2, "• 識別關鍵幀", ha='center', fontsize=12, color=text_color)
-plt.text(9.0, 2.2, "上下文向量生成", ha='center', fontsize=12, color=text_color)
+plt.text(9.0, 5.8, "注意力機制", ha='center', fontsize=28, fontweight='bold', color=text_color)
+plt.text(9.0, 4.8, "• Linear + Tanh", ha='center', fontsize=22, color=text_color)
+plt.text(9.0, 4.0, "• Linear + Softmax", ha='center', fontsize=22, color=text_color)
+plt.text(9.0, 3.2, "• 識別關鍵幀", ha='center', fontsize=22, color=text_color)
+plt.text(9.0, 2.2, "上下文向量生成", ha='center', fontsize=22, color=text_color)
 
 # LSTM標籤
-plt.text(15.0, 5.8, "雙向LSTM", ha='center', fontsize=14, fontweight='bold', color=text_color)
-plt.text(15.0, 4.8, "• 輸入維度: 512", ha='center', fontsize=12, color=text_color)
-plt.text(15.0, 4.0, "• 隱藏層: 256", ha='center', fontsize=12, color=text_color)
-plt.text(15.0, 3.2, "• 雙向、兩層", ha='center', fontsize=12, color=text_color)
-plt.text(15.0, 2.2, "Dropout: 0.5", ha='center', fontsize=12, color=text_color)
+plt.text(15.0, 5.8, "雙向LSTM", ha='center', fontsize=28, fontweight='bold', color=text_color)
+plt.text(15.0, 4.8, "• 輸入維度: 512", ha='center', fontsize=22, color=text_color)
+plt.text(15.0, 4.0, "• 隱藏層: 256", ha='center', fontsize=22, color=text_color)
+plt.text(15.0, 3.2, "• 雙向、兩層", ha='center', fontsize=22, color=text_color)
+plt.text(15.0, 2.2, "Dropout: 0.5", ha='center', fontsize=22, color=text_color)
 
 # FC標籤
-plt.text(21.0, 5.8, "全連接分類器", ha='center', fontsize=14, fontweight='bold', color=text_color)
-plt.text(21.0, 4.8, "• 512 → 128", ha='center', fontsize=12, color=text_color)
-plt.text(21.0, 4.0, "• 128 → 64", ha='center', fontsize=12, color=text_color)
-plt.text(21.0, 3.2, "• 64 → 1", ha='center', fontsize=12, color=text_color)
-plt.text(21.0, 2.2, "風險機率輸出", ha='center', fontsize=12, color=text_color)
+plt.text(21.0, 5.8, "全連接分類器", ha='center', fontsize=28, fontweight='bold', color=text_color)
+plt.text(21.0, 4.8, "• 512 → 128", ha='center', fontsize=22, color=text_color)
+plt.text(21.0, 4.0, "• 128 → 64", ha='center', fontsize=22, color=text_color)
+plt.text(21.0, 3.2, "• 64 → 1", ha='center', fontsize=22, color=text_color)
+plt.text(21.0, 2.2, "風險機率輸出", ha='center', fontsize=22, color=text_color)
 
 # 設置軸的範圍和隱藏軸
 plt.axis('equal')
@@ -101,15 +101,12 @@ plt.xlim(0, 24)
 plt.ylim(0, 7.5)
 
 # 添加標題
-plt.title("ResNet+LSTM 交通風險預測模型架構", fontsize=16, fontweight='bold')
+plt.title("ResNet+LSTM 交通風險預測模型架構", fontsize=22, fontweight='bold')
 
-# 底部添加說明
-plt.text(12, 0.4, "結合CNN空間特徵與LSTM時序分析，透過注意力機制識別關鍵幀", 
-         ha='center', fontsize=13, fontweight='bold', color=text_color)
 
 # 保存圖像
 plt.tight_layout()
-plt.savefig("resnet_lstm_architecture.png", dpi=300, bbox_inches='tight', facecolor='white')
+plt.savefig("resnet_lstm_architecture.svg", format='svg', bbox_inches='tight', facecolor='white')
 
 # 顯示圖像
 plt.show()
