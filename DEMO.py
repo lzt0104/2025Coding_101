@@ -53,7 +53,7 @@ num_layers = 1
 output_size = 1
 
 model = CNNLSTMModel(hidden_size, num_layers, output_size).to(device)
-model.load_state_dict(torch.load('modle\modle.pth', map_location=torch.device('cpu')))  #更換路徑
+model.load_state_dict(torch.load('model/modle.pth', map_location=torch.device('cpu')))  #更換路徑
 model.eval()
 
 transform = transforms.Compose([
@@ -102,38 +102,38 @@ for i in range(12):
 
     cv2.destroyAllWindows()
 
-# #改良一
-# # for i in range(12):
-# #     randint_ = [27, 118, 140, 14, 3, 32, 150, 155, 81, 54, 160, 89, 126]  # 隨機選取12張圖片，可以更改
-# #     image_folder = f"train/train/freeway_{randint_[i]:04d}"
+改良一
+for i in range(12):
+    randint_ = [27, 118, 140, 14, 3, 32, 150, 155, 81, 54, 160, 89, 126]  # 隨機選取12張圖片，可以更改
+    image_folder = f"train/train/freeway_{randint_[i]:04d}"
 
-# #     images = [img for img in os.listdir(image_folder) if img.endswith(".jpg")]
+    images = [img for img in os.listdir(image_folder) if img.endswith(".jpg")]
 
-# #     images.sort(key=lambda x: int(x.split('.')[0]))
+    images.sort(key=lambda x: int(x.split('.')[0]))
 
-# #     tf = 0
+    tf = 0
 
-# #     cv2.namedWindow("image", cv2.WINDOW_NORMAL)
-# #     for image in images:
-# #         img_path = os.path.join(image_folder, image)
-# #         frame = cv2.imread(img_path)
-# #         image_tensor = preprocess_image(img_path)
-# #         if not tf:
-# #             prediction = predict_single_frame(model, image_tensor)
-# #             if prediction > 0.5:
-# #                 tf = 1
-# #         accident_prediction = "Please reduce the speed" if tf else "safe"
+    cv2.namedWindow("image", cv2.WINDOW_NORMAL)
+    for image in images:
+        img_path = os.path.join(image_folder, image)
+        frame = cv2.imread(img_path)
+        image_tensor = preprocess_image(img_path)
+        if not tf:
+            prediction = predict_single_frame(model, image_tensor)
+            if prediction > 0.5:
+                tf = 1
+        accident_prediction = "Please reduce the speed" if tf else "safe"
 
-# #         # 加入語音提示
-# #         if accident_prediction == "Please reduce the speed":
-# #             engine.say("請減速慢行")
-# #             engine.runAndWait()
+        # 加入語音提示
+        if accident_prediction == "Please reduce the speed":
+            engine.say("請減速慢行")
+            engine.runAndWait()
 
-# #         cv2.putText(frame, accident_prediction, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0) if accident_prediction == "safe" else (0, 0, 255), 2, cv2.LINE_AA)
-# #         cv2.imshow("image", frame)
-# #         cv2.waitKey(50)
+        cv2.putText(frame, accident_prediction, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0) if accident_prediction == "safe" else (0, 0, 255), 2, cv2.LINE_AA)
+        cv2.imshow("image", frame)
+        cv2.waitKey(50)
 
-# #     cv2.destroyAllWindows()
+    cv2.destroyAllWindows()
 
 # #改良二
 # # 設定影片參數
@@ -197,41 +197,41 @@ for i in range(12):
 
 
 
-import matplotlib.pyplot as plt
-import numpy as np
-import seaborn as sns
-from matplotlib import rcParams
+# import matplotlib.pyplot as plt
+# import numpy as np
+# import seaborn as sns
+# from matplotlib import rcParams
 
-# 設定中文字體
-rcParams['font.family'] = 'HarmonyOS Sans TC'  # 更換為系統中已安裝的中文字體名稱
-rcParams['axes.unicode_minus'] = False  # 確保負號正常顯示
+# # 設定中文字體
+# rcParams['font.family'] = 'HarmonyOS Sans TC'  # 更換為系統中已安裝的中文字體名稱
+# rcParams['axes.unicode_minus'] = False  # 確保負號正常顯示
 
-# 混淆矩陣數據
-confusion_matrix = np.array([[956, 8], [29, 134]])
-labels = ["T", "F"]
+# # 混淆矩陣數據
+# confusion_matrix = np.array([[956, 8], [29, 134]])
+# labels = ["T", "F"]
 
-# 繪製混淆矩陣
-plt.figure(figsize=(8, 6))
-sns.heatmap(confusion_matrix, annot=True, fmt="d", cmap="Blues", xticklabels=labels, yticklabels=labels, cbar=False,annot_kws={"size": 14})
+# # 繪製混淆矩陣
+# plt.figure(figsize=(8, 6))
+# sns.heatmap(confusion_matrix, annot=True, fmt="d", cmap="Blues", xticklabels=labels, yticklabels=labels, cbar=False,annot_kws={"size": 14})
 
-# 標題與座標
-plt.title("Confusion Matrix", fontsize=16)
-plt.xlabel("Predicted Label", fontsize=14)
-plt.ylabel("True Label", fontsize=14)
+# # 標題與座標
+# plt.title("Confusion Matrix", fontsize=16)
+# plt.xlabel("Predicted Label", fontsize=14)
+# plt.ylabel("True Label", fontsize=14)
 
-# 顯示圖表
-plt.tight_layout()
-plt.show()
+# # 顯示圖表
+# plt.tight_layout()
+# plt.show()
 
-from sklearn.metrics import classification_report
-import numpy as np
+# from sklearn.metrics import classification_report
+# import numpy as np
 
-# 模擬測試數據
-y_true = np.array([0] * 956 + [1] * 8 + [0] * 29 + [1] * 134)  # 真實標籤
-y_pred = np.array([0] * 956 + [0] * 8 + [1] * 29 + [1] * 134)  # 預測標籤
+# # 模擬測試數據
+# y_true = np.array([0] * 956 + [1] * 8 + [0] * 29 + [1] * 134)  # 真實標籤
+# y_pred = np.array([0] * 956 + [0] * 8 + [1] * 29 + [1] * 134)  # 預測標籤
 
-# 打印分類報告
-print(classification_report(y_true, y_pred, target_names=["T", "F"]))
+# # 打印分類報告
+# print(classification_report(y_true, y_pred, target_names=["T", "F"]))
 
 
 

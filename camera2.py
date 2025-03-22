@@ -169,7 +169,7 @@ class SafetyDemo:
                     break
                 
                 tensor = self.process_image(frame)
-                tensor_buffer.append(tensor)
+                tensor_buf-fer.append(tensor)
                 if len(tensor_buffer) > self.sequence_length:
                     tensor_buffer.pop(0)
                 
